@@ -1,4 +1,4 @@
-maxDestination: 10
+maxDestination: 20
 
 database:
     # the name of your JDBC driver

@@ -38,10 +38,11 @@ public class QuestionsResource {
     @UnitOfWork
     public Questions find(@NotEmpty @QueryParam("query") String query) {
         Optional<Questions> question = questionsDAO.findWithLevenshteinAlgorithm(query);
+        
         if (!question.isPresent()) {
-            throw new NotFoundException("Not found answer for your question");
+            throw new NotFoundException("Answer for this question not found!");
         }
-
+        
         return question.get();
     }
 }

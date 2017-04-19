@@ -20,10 +20,12 @@ public class QuestionsDAOImpl extends AbstractDAO<Questions> implements Question
      * @param searchQuery User question
      * @return Possible answer
      */
+    @SuppressWarnings("unchecked")
     public Optional<Questions> findWithLevenshteinAlgorithm(String searchQuery) {
-        return query("SELECT q FROM Questions q WHERE levenshtein(lower(q.question), lower(:query)) BETWEEN 0 AND :maxDestination")
-                .setParameter("query", searchQuery)
+        return (Optional<Questions>) currentSession().getNamedNativeQuery(Questions.SEARCH_NATIVE_NAMED_QUERY)
+                .setParameter("question", searchQuery)
                 .setParameter("maxDestination", maxDestination)
+                .setMaxResults(1)
                 .uniqueResultOptional();
     }
 }

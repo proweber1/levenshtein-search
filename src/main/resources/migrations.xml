@@ -19,4 +19,11 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="2" author="Vyacheslav">
+        <insert tableName="questions">
+            <column name="question">Where is my product key?</column>
+            <column name="answer">Once order is verified for your security, email will be dispatched containing your download link and license key.</column>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
